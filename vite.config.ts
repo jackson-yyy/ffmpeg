@@ -13,4 +13,7 @@ export default defineConfig({
       "Cross-Origin-Embedder-Policy": "require-corp",
     },
   },
+  worker: {
+    format: "es", // 使用 ES 模块格式
+  },
 });

@@ -2,15 +2,24 @@
 import { NButton, NUpload, type UploadFileInfo } from "naive-ui";
 import { ref } from "vue";
 import { useFFmpeg } from "../hooks/useFFmpeg";
+import { useWebCodecs } from "../hooks/webcodecs/useWebCodecs";
+import { Clipper } from "../sdk";
 
 const frames = ref<string[]>([]);
 
-const { extractFrames } = useFFmpeg();
+// const { extractFrames } = useFFmpeg();
+// const { extractFrames } = useWebCodecs();
 
 const handleChange = async (options: { fileList: UploadFileInfo[] }) => {
   const file = options.fileList[0];
   if (!file.file) return;
-  frames.value = await extractFrames(file.file);
+  const start = performance.now();
+  const clipper = new Clipper(file.file);
+  // frames.value = await extractFrames(file.file);
+  frames.value = (await clipper.thumbnails()).map((blob) =>
+    URL.createObjectURL(blob.blob)
+  );
+  console.log("耗时", performance.now() - start);
 };
 </script>
 

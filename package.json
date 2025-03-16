@@ -12,7 +12,9 @@
     "@ffmpeg/ffmpeg": "^0.12.15",
     "@ffmpeg/util": "^0.12.2",
     "lodash": "^4.17.21",
+    "mp4box": "^0.5.3",
     "naive-ui": "^2.41.0",
+    "opfs-tools": "^0.7.0",
     "vue": "^3.5.13"
   },
   "devDependencies": {
